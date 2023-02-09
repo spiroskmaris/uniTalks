@@ -21,9 +21,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FancyButtonComponent } from './components/fancy-button/fancy-button.component';
+import { AddPageComponent } from './components/add-page/add-page.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, NavbarComponent],
+  declarations: [AppComponent, CardComponent, NavbarComponent, FancyButtonComponent, AddPageComponent, MainPageComponent],
   imports: [
     BrowserModule,
     MdbAccordionModule,

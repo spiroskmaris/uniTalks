@@ -1,5 +1,11 @@
-<!-- <app-card></app-card> -->
-
 <div class="container-fluid darktheme">
   <app-navbar></app-navbar>
+
+  <div class="add-container">
+    <a routerLink="/add"
+      ><app-fancy-button [value]="'Add your story!'"></app-fancy-button
+    ></a>
+  </div>
+
+  <router-outlet></router-outlet>
 </div>
