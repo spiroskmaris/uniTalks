@@ -7,7 +7,7 @@ import { SupabaseService } from './services/supabase.service';
   styleUrls: ['./app.component.scss'],
 })
 export default class AppComponent implements OnInit {
+  title = 'Write your story | uniTalks';
   constructor() {}
   ngOnInit(): void {}
-  title = 'Write your story | uniTalks';
 }

@@ -1,27 +1,13 @@
 import { Injectable } from '@angular/core';
-import {
-  AuthChangeEvent,
-  AuthSession,
-  createClient,
-  Session,
-  SupabaseClient,
-  User,
-} from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-export interface Profile {
-  id?: string;
-  username: string;
-  website: string;
-  avatar_url: string;
-}
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupabaseService {
   private supabase: SupabaseClient;
-  _session: AuthSession | null = null;
 
   constructor() {
     this.supabase = createClient(
@@ -30,15 +16,9 @@ export class SupabaseService {
     );
   }
 
-  get session() {
-    this.supabase.auth.getSession().then(({ data }) => {
-      this._session = data.session;
-    });
-    return this._session;
-  }
-
   public async getCards() {
-    return await this.supabase.from('cards').select('*');
+    const boards = await this.supabase.from('cards').select('*');
+    return boards.data || [];
   }
 
   public async addCard(title: string, text: string) {
@@ -47,5 +27,26 @@ export class SupabaseService {
       title: title,
     };
     return this.supabase.from('cards').insert([payload]);
+  }
+
+  public resetCards() {
+    return this.supabase.rpc('reset_cards');
+  }
+
+  public getCardsRT(): Observable<any> {
+    const changes = new Subject();
+
+    this.supabase
+      .channel('any')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'cards' },
+        (payload) => {
+          changes.next(payload);
+        }
+      )
+      .subscribe();
+
+    return changes.asObservable();
   }
 }

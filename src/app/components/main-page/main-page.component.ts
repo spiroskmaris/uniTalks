@@ -11,15 +11,24 @@ export interface ICard {
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css'],
+  styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  public cards: any;
+  public cards?: ICard[];
+
   constructor(public supabase: SupabaseService) {}
 
   ngOnInit(): void {
-    this.supabase.getCards().then((result) => {
-      this.cards = result.data;
+    this.supabase.resetCards();
+
+    this.supabase.getCards().then((res: ICard[]) => {
+      this.cards = res;
+    });
+
+    this.supabase.getCardsRT().subscribe((update: any) => {
+      const record = update.new?.id ? update.new : update.old;
+
+      this.cards?.push(record);
     });
   }
 }
