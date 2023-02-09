@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+export interface ICard {
+  id: number;
+  created_at: Date;
+  title: string;
+  text: string;
+}
 
 @Component({
   selector: 'app-card',
@@ -6,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card.component.scss'],
 })
 export class CardComponent implements OnInit {
+  @Input() card: ICard | undefined;
   constructor() {}
 
   ngOnInit(): void {}

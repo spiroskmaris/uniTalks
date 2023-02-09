@@ -7,10 +7,7 @@ import { SupabaseService } from './services/supabase.service';
   styleUrls: ['./app.component.scss'],
 })
 export default class AppComponent implements OnInit {
-  constructor(private supabase: SupabaseService) {}
-  ngOnInit(): void {
-    this.supabase.getCards();
-    console.log(this.supabase.getCards().then(() => {}));
-  }
+  constructor() {}
+  ngOnInit(): void {}
   title = 'Write your story | uniTalks';
 }

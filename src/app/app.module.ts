@@ -24,9 +24,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FancyButtonComponent } from './components/fancy-button/fancy-button.component';
 import { AddPageComponent } from './components/add-page/add-page.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, CardComponent, NavbarComponent, FancyButtonComponent, AddPageComponent, MainPageComponent],
+  declarations: [
+    AppComponent,
+    CardComponent,
+    NavbarComponent,
+    FancyButtonComponent,
+    AddPageComponent,
+    MainPageComponent,
+  ],
   imports: [
     BrowserModule,
     MdbAccordionModule,
@@ -47,6 +55,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     NoopAnimationsModule,
     AppRoutingModule,
     NgbModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

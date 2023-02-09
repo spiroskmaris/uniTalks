@@ -1,1 +1,5 @@
-<p>add-page works!</p>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+  <input name="title" ngModel required />
+  <input name="text" ngModel required />
+  <button [disabled]="!form.valid">Submit</button>
+</form>
