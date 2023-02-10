@@ -1,0 +1,6 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" novalidate>
+  <input placeholder="Title" name="title" ngModel required />
+  <textarea placeholder="Text" name="text" rows="4" cols="21" ngModel required>
+  </textarea>
+  <button [disabled]="!form.valid">Submit</button>
+</form>
